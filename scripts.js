@@ -1,5 +1,13 @@
-let playerSelection = "Paper";
-let computerSelection = computerChoice();
+const playerSelection = "Rock";
+const computerSelection = computerChoice();
+const printPlayerChoice = document.getElementById("player-choice");
+const printComputerChoice = document.getElementById("computer-choice");
+const printGameResult = document.getElementById("game-result");
+
+printPlayerChoice.innerHTML = "Player choice: " + playerSelection;
+printComputerChoice.innerHTML = "Computer choice: " + computerSelection;
+printGameResult.innerHTML = "Game result: " + playGame(playerSelection, computerSelection);
+
 
 console.log(playGame(playerSelection, computerSelection))
 console.log("Player: ", playerSelection);
