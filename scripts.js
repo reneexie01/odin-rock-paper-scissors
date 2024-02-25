@@ -1,17 +1,17 @@
 const playerSelection = "Rock";
+const playerSelection1 = document.getElementById("player-choice");
 const computerSelection = computerChoice();
 const printPlayerChoice = document.getElementById("player-choice");
 const printComputerChoice = document.getElementById("computer-choice");
 const printGameResult = document.getElementById("game-result");
 
-printPlayerChoice.innerHTML = "Player choice: " + playerSelection;
-printComputerChoice.innerHTML = "Computer choice: " + computerSelection;
-printGameResult.innerHTML = "Game result: " + playGame(playerSelection, computerSelection);
+printPlayerChoice.innerHTML = `<strong>Player choice:</strong> ${playerSelection}`;
+printComputerChoice.innerHTML = `<strong>Computer choice:</strong> ${computerSelection}`;
+printGameResult.innerHTML = `<strong>Game result:</strong> ${playGame(playerSelection, computerSelection)}`;
 
-
-console.log(playGame(playerSelection, computerSelection))
 console.log("Player: ", playerSelection);
 console.log("Computer: ", computerSelection);
+console.log(playGame(playerSelection, computerSelection))
 
 function playGame(playerSelection, computerSelection) {
     if (computerSelection === "Rock" && playerSelection === "Scissor") {
