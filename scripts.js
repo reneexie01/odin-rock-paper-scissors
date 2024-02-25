@@ -1,15 +1,9 @@
-function computerChoice() {
-    const randomNumber = (Math.random() * 10 + 1);
-    if (randomNumber <= 3.333) {
-        return "Rock";
-    } else if (randomNumber > 3.333 && randomNumber <= 6.666) {
-        return "Scissor";
-    } else {
-        return "Paper";
-    }
-}
+let playerSelection = "Paper";
+let computerSelection = computerChoice();
 
-console.log(computerChoice());
+console.log(playGame(playerSelection, computerSelection))
+console.log("Player: ", playerSelection);
+console.log("Computer: ", computerSelection);
 
 function playGame(playerSelection, computerSelection) {
     if (computerSelection === "Rock" && playerSelection === "Scissor") {
@@ -31,11 +25,17 @@ function playGame(playerSelection, computerSelection) {
     } else if (computerSelection === "Paper" && playerSelection === "Paper") {
         return "Tie! Pick again.";
     } else {
-        return "Error";
+        return "Invalid option selected";
     }
 }
 
-let playerSelection = "Paper";
-let computerSelection = "Paper";
-
-console.log(playGame(playerSelection, computerSelection))
+function computerChoice() {
+    const randomNumber = (Math.random() * 10 + 1);
+    if (randomNumber <= 3.333) {
+        return "Rock";
+    } else if (randomNumber > 3.333 && randomNumber <= 6.666) {
+        return "Scissor";
+    } else {
+        return "Paper";
+    }
+}
