@@ -1,9 +1,14 @@
-const playerSelection = "Rock";
-const playerSelection1 = document.getElementById("player-choice");
-const computerSelection = computerChoice();
-const printPlayerChoice = document.getElementById("player-choice");
-const printComputerChoice = document.getElementById("computer-choice");
-const printGameResult = document.getElementById("game-result");
+const startGameBtn = document.getElementById("start-game");
+startGameBtn.addEventListener("click", startGame);
+let playerSelection;
+
+function startGame() {
+    const inputValue = document.getElementById("player-input").value;
+    let playerSelection = inputValue;
+    const computerSelection = computerChoice();
+    const printPlayerChoice = document.getElementById("player-choice");
+    const printComputerChoice = document.getElementById("computer-choice");
+    const printGameResult = document.getElementById("game-result");
 
 printPlayerChoice.innerHTML = `<strong>Player choice:</strong> ${playerSelection}`;
 printComputerChoice.innerHTML = `<strong>Computer choice:</strong> ${computerSelection}`;
@@ -47,3 +52,4 @@ function computerChoice() {
         return "Paper";
     }
 }
+  }
