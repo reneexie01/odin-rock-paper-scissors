@@ -84,10 +84,10 @@ function scoreCount(gameOutcome) {
 }
 
 function computerChoice() {
-    const randomNumber = (Math.random() * 10 + 1);
-    if (randomNumber <= 3.333) {
+    const randomNumber = Math.floor((Math.random() * 3) + 1);
+    if (randomNumber === 1) {
         return "ROCK";
-    } else if (randomNumber > 3.333 && randomNumber <= 6.666) {
+    } else if (randomNumber === 2) {
         return "SCISSORS";
     } else {
         return "PAPER";
@@ -96,6 +96,7 @@ function computerChoice() {
   }
 
   function resetGame() {
+    document.getElementById("player-input").value = '';
     playerWins = 0;
     computerWins = 0;
     gameNumber = 0;
