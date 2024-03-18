@@ -10,24 +10,39 @@ paperBtn.addEventListener("click", () => startGameChoiceBtns("PAPER"));
 const scissorsBtn = document.querySelector("#scissors-btn");
 scissorsBtn.addEventListener("click", () => startGameChoiceBtns("SCISSORS"));
 
+const results = document.querySelector("#results");
+
 let playerSelection;
 let computerSelection;
 let playerWins = 0;
 let computerWins = 0;
 let gameNumber = 0;
 
+/*
 const printPlayerChoice = document.querySelector("#player-choice");
 const printComputerChoice = document.querySelector("#computer-choice");
 const printGameResult = document.querySelector("#game-result");
 const printScore = document.querySelector("#score");
+*/
 
 function startGameChoiceBtns(playerSelection) {
     const computerSelection = computerChoice();
     let gameOutcome;
-    
+
+    const printPlayerChoice = document.createElement("p");
+    printPlayerChoice.setAttribute("id", "player-choice");
     printPlayerChoice.innerHTML = `<strong>Player choice:</strong> ${playerSelection}`;
+    results.appendChild(printPlayerChoice);
+
+    const printComputerChoice = document.createElement("p");
+    printComputerChoice.setAttribute("id", "computer-choice");
     printComputerChoice.innerHTML = `<strong>Computer choice:</strong> ${computerSelection}`;
+    results.appendChild(printComputerChoice);
+
+    const printGameResult = document.createElement("p");
+    printGameResult.setAttribute("id", "game-result");
     printGameResult.innerHTML = `<strong>Game result:</strong> ${playGame(playerSelection, computerSelection)}`;
+    results.appendChild(printGameResult);
     
     function playGame(playerSelection, computerSelection) {
         if (computerSelection === "ROCK" && playerSelection === "SCISSORS") {
@@ -71,11 +86,15 @@ function startGameChoiceBtns(playerSelection) {
     console.log("Player wins: ", playerWins);
     console.log("Computer wins: ", computerWins);
     console.log("Game number: ", gameNumber);
+
+    const printScore = document.createElement("p");
+    printScore.setAttribute("id", "score");
     printScore.innerHTML = `
     <p><strong>Score: </strong><p> 
     <p>PLAYER wins: ${playerWins} | COMPUTER wins: ${computerWins}</p>
     <p><strong>Games Played:</strong> ${gameNumber}</p>
     `
+    results.appendChild(printScore);
     
     function scoreCount(gameOutcome) {
         if (gameOutcome === "loss") {
@@ -107,9 +126,20 @@ const playerSelection = inputValue.toUpperCase();
 const computerSelection = computerChoice();
 let gameOutcome;
 
+const printPlayerChoice = document.createElement("p");
+printPlayerChoice.setAttribute("id", "player-choice");
 printPlayerChoice.innerHTML = `<strong>Player choice:</strong> ${playerSelection}`;
+results.appendChild(printPlayerChoice);
+
+const printComputerChoice = document.createElement("p");
+printComputerChoice.setAttribute("id", "computer-choice");
 printComputerChoice.innerHTML = `<strong>Computer choice:</strong> ${computerSelection}`;
+results.appendChild(printComputerChoice);
+
+const printGameResult = document.createElement("p");
+printGameResult.setAttribute("id", "game-result");
 printGameResult.innerHTML = `<strong>Game result:</strong> ${playGame(playerSelection, computerSelection)}`;
+results.appendChild(printGameResult);
 
 function playGame(playerSelection, computerSelection) {
     if (computerSelection === "ROCK" && playerSelection === "SCISSORS") {
@@ -153,11 +183,15 @@ console.log(playGame(playerSelection, computerSelection))
 console.log("Player wins: ", playerWins);
 console.log("Computer wins: ", computerWins);
 console.log("Game number: ", gameNumber);
+
+const printScore = document.createElement("p");
+printScore.setAttribute("id", "score");
 printScore.innerHTML = `
 <p><strong>Score: </strong><p> 
 <p>PLAYER wins: ${playerWins} | COMPUTER wins: ${computerWins}</p>
 <p><strong>Games Played:</strong> ${gameNumber}</p>
 `
+results.appendChild(printScore);
 
 function scoreCount(gameOutcome) {
     if (gameOutcome === "loss") {
@@ -190,8 +224,10 @@ function computerChoice() {
     gameNumber = 0;
     playerSelection;
     computerSelection;
+    /*
     printPlayerChoice.innerHTML = `<strong>Player choice:</strong>`;
     printComputerChoice.innerHTML = `<strong>Computer choice:</strong>`;
     printGameResult.innerHTML = `<strong>Game result:</strong>`;
     printScore.innerHTML = `<strong>Score: </strong>`;
+    */
   }
