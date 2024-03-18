@@ -1,6 +1,6 @@
-const startGameBtn = document.getElementById("start-game");
+const startGameBtn = document.querySelector("#start-game");
 startGameBtn.addEventListener("click", startGame);
-const resetGameBtn = document.getElementById("reset-game");
+const resetGameBtn = document.querySelector("#reset-game");
 resetGameBtn.addEventListener("click", resetGame);
 let playerSelection;
 let computerSelection;
@@ -8,13 +8,13 @@ let playerWins = 0;
 let computerWins = 0;
 let gameNumber = 0;
 
-const printPlayerChoice = document.getElementById("player-choice");
-const printComputerChoice = document.getElementById("computer-choice");
-const printGameResult = document.getElementById("game-result");
-const printScore = document.getElementById("score");
+const printPlayerChoice = document.querySelector("#player-choice");
+const printComputerChoice = document.querySelector("#computer-choice");
+const printGameResult = document.querySelector("#game-result");
+const printScore = document.querySelector("#score");
 
 function startGame() {
-const inputValue = document.getElementById("player-input").value;
+const inputValue = document.querySelector("#player-input").value;
 const playerSelection = inputValue.toUpperCase();
 const computerSelection = computerChoice();
 let gameOutcome;
@@ -96,7 +96,7 @@ function computerChoice() {
   }
 
   function resetGame() {
-    document.getElementById("player-input").value = '';
+    document.querySelector("#player-input").value = '';
     playerWins = 0;
     computerWins = 0;
     gameNumber = 0;
