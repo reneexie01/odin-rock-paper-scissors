@@ -18,14 +18,9 @@ let playerWins = 0;
 let computerWins = 0;
 let gameNumber = 0;
 
-/*
-const printPlayerChoice = document.querySelector("#player-choice");
-const printComputerChoice = document.querySelector("#computer-choice");
-const printGameResult = document.querySelector("#game-result");
-const printScore = document.querySelector("#score");
-*/
-
 function startGameChoiceBtns(playerSelection) {
+    clearPreviousGames();
+    document.querySelector("#player-input").value = '';
     const computerSelection = computerChoice();
     let gameOutcome;
 
@@ -79,13 +74,7 @@ function startGameChoiceBtns(playerSelection) {
     }
     
     scoreCount(gameOutcome);
-    
-    console.log("Player: ", playerSelection);
-    console.log("Computer: ", computerSelection);
-    console.log(playGame(playerSelection, computerSelection))
-    console.log("Player wins: ", playerWins);
-    console.log("Computer wins: ", computerWins);
-    console.log("Game number: ", gameNumber);
+
 
     const printScore = document.createElement("p");
     printScore.setAttribute("id", "score");
@@ -121,6 +110,7 @@ function startGameChoiceBtns(playerSelection) {
       }
 
 function startGame() {
+clearPreviousGames();
 const inputValue = document.querySelector("#player-input").value;
 const playerSelection = inputValue.toUpperCase();
 const computerSelection = computerChoice();
@@ -177,13 +167,6 @@ function playGame(playerSelection, computerSelection) {
 
 scoreCount(gameOutcome);
 
-console.log("Player: ", playerSelection);
-console.log("Computer: ", computerSelection);
-console.log(playGame(playerSelection, computerSelection))
-console.log("Player wins: ", playerWins);
-console.log("Computer wins: ", computerWins);
-console.log("Game number: ", gameNumber);
-
 const printScore = document.createElement("p");
 printScore.setAttribute("id", "score");
 printScore.innerHTML = `
@@ -224,10 +207,14 @@ function computerChoice() {
     gameNumber = 0;
     playerSelection;
     computerSelection;
-    /*
-    printPlayerChoice.innerHTML = `<strong>Player choice:</strong>`;
-    printComputerChoice.innerHTML = `<strong>Computer choice:</strong>`;
-    printGameResult.innerHTML = `<strong>Game result:</strong>`;
-    printScore.innerHTML = `<strong>Score: </strong>`;
-    */
+
+    while (results.firstChild) {
+        results.removeChild(results.lastChild);
+    }
+  }
+
+  function clearPreviousGames() {
+    while (results.firstChild) {
+        results.removeChild(results.lastChild);
+    }
   }
