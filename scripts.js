@@ -17,10 +17,12 @@ let computerSelection;
 let playerWins = 0;
 let computerWins = 0;
 let gameNumber = 0;
+let announcementMade = false;
 
 function startGameChoiceBtns(playerSelection) {
     clearPreviousGames();
     document.querySelector("#player-input").value = '';
+
     const computerSelection = computerChoice();
     let gameOutcome;
 
@@ -107,29 +109,32 @@ function startGameChoiceBtns(playerSelection) {
             return "PAPER";
         }
     }
+
+    announceWinner(playerWins, computerWins);
+
       }
 
 function startGame() {
-clearPreviousGames();
-const inputValue = document.querySelector("#player-input").value;
-const playerSelection = inputValue.toUpperCase();
-const computerSelection = computerChoice();
-let gameOutcome;
+    clearPreviousGames();
+    const inputValue = document.querySelector("#player-input").value;
+    const playerSelection = inputValue.toUpperCase();
+    const computerSelection = computerChoice();
+    let gameOutcome;
 
-const printPlayerChoice = document.createElement("p");
-printPlayerChoice.setAttribute("id", "player-choice");
-printPlayerChoice.innerHTML = `<strong>Player choice:</strong> ${playerSelection}`;
-results.appendChild(printPlayerChoice);
+    const printPlayerChoice = document.createElement("p");
+    printPlayerChoice.setAttribute("id", "player-choice");
+    printPlayerChoice.innerHTML = `<strong>Player choice:</strong> ${playerSelection}`;
+    results.appendChild(printPlayerChoice);
 
-const printComputerChoice = document.createElement("p");
-printComputerChoice.setAttribute("id", "computer-choice");
-printComputerChoice.innerHTML = `<strong>Computer choice:</strong> ${computerSelection}`;
-results.appendChild(printComputerChoice);
+    const printComputerChoice = document.createElement("p");
+    printComputerChoice.setAttribute("id", "computer-choice");
+    printComputerChoice.innerHTML = `<strong>Computer choice:</strong> ${computerSelection}`;
+    results.appendChild(printComputerChoice);
 
-const printGameResult = document.createElement("p");
-printGameResult.setAttribute("id", "game-result");
-printGameResult.innerHTML = `<strong>Game result:</strong> ${playGame(playerSelection, computerSelection)}`;
-results.appendChild(printGameResult);
+    const printGameResult = document.createElement("p");
+    printGameResult.setAttribute("id", "game-result");
+    printGameResult.innerHTML = `<strong>Game result:</strong> ${playGame(playerSelection, computerSelection)}`;
+    results.appendChild(printGameResult);
 
 function playGame(playerSelection, computerSelection) {
     if (computerSelection === "ROCK" && playerSelection === "SCISSORS") {
@@ -167,14 +172,14 @@ function playGame(playerSelection, computerSelection) {
 
 scoreCount(gameOutcome);
 
-const printScore = document.createElement("p");
-printScore.setAttribute("id", "score");
-printScore.innerHTML = `
-<p><strong>Score: </strong><p> 
-<p>PLAYER wins: ${playerWins} | COMPUTER wins: ${computerWins}</p>
-<p><strong>Games Played:</strong> ${gameNumber}</p>
-`
-results.appendChild(printScore);
+    const printScore = document.createElement("p");
+    printScore.setAttribute("id", "score");
+    printScore.innerHTML = `
+    <p><strong>Score: </strong><p> 
+    <p>PLAYER wins: ${playerWins} | COMPUTER wins: ${computerWins}</p>
+    <p><strong>Games Played:</strong> ${gameNumber}</p>
+    `
+    results.appendChild(printScore);
 
 function scoreCount(gameOutcome) {
     if (gameOutcome === "loss") {
@@ -198,23 +203,45 @@ function computerChoice() {
         return "PAPER";
     }
 }
+
+announceWinner(playerWins, computerWins);
+
   }
 
-  function resetGame() {
+function resetGame() {
     document.querySelector("#player-input").value = '';
     playerWins = 0;
     computerWins = 0;
     gameNumber = 0;
     playerSelection;
     computerSelection;
+    announcementMade = false;
 
     while (results.firstChild) {
         results.removeChild(results.lastChild);
     }
   }
 
-  function clearPreviousGames() {
+function clearPreviousGames() {
     while (results.firstChild) {
         results.removeChild(results.lastChild);
+    }
+  }
+
+  function announceWinner(playerWins, computerWins) {
+    if (!announcementMade) {
+        if (playerWins === 5) {
+            announcementMade = true;
+            const resetGamePrompt = document.createElement("p");
+            resetGamePrompt.innerHTML = `<strong>YOU </strong>win click <strong>"Reset Game"</strong> to start playing again or keep playing forever.`;
+            results.appendChild(resetGamePrompt);
+            /* resetGame(); */
+        } else if (computerWins === 5) {
+            announcementMade = true;
+            const resetGamePrompt = document.createElement("p");
+            resetGamePrompt.innerHTML = `<strong>COMPUTER </strong>wins click <strong>"Reset Game"</strong> to start playing again or keep playing forever.`;
+            results.appendChild(resetGamePrompt);
+            /* resetGame(); */
+        }
     }
   }
