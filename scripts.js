@@ -116,7 +116,7 @@ function startGameChoiceBtns(playerSelection) {
 
 function startGame() {
     clearPreviousGames();
-    const inputValue = document.querySelector("#player-input").value;
+    let inputValue = document.querySelector("#player-input").value;
     const playerSelection = inputValue.toUpperCase();
     const computerSelection = computerChoice();
     let gameOutcome;
@@ -204,6 +204,7 @@ function computerChoice() {
     }
 }
 
+document.querySelector("#player-input").value = '';
 announceWinner(playerWins, computerWins);
 
   }
@@ -235,13 +236,11 @@ function clearPreviousGames() {
             const resetGamePrompt = document.createElement("p");
             resetGamePrompt.innerHTML = `<strong>YOU </strong>win click <strong>"Reset Game"</strong> to start playing again or keep playing forever.`;
             results.appendChild(resetGamePrompt);
-            /* resetGame(); */
         } else if (computerWins === 5) {
             announcementMade = true;
             const resetGamePrompt = document.createElement("p");
             resetGamePrompt.innerHTML = `<strong>COMPUTER </strong>wins click <strong>"Reset Game"</strong> to start playing again or keep playing forever.`;
             results.appendChild(resetGamePrompt);
-            /* resetGame(); */
         }
     }
   }
